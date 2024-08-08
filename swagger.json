@@ -1,0 +1,40 @@
+{
+    "Usuario": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Seu Nome"
+        },
+        "email": {
+          "type": "string",
+          "example": "seuemail@dominio.com"
+        },
+        "senha": {
+          "type": "string",
+          "example": "suaSenha"
+        }
+      },
+      "required": ["nome", "email", "senha"]
+    },
+    "Tarefa": {
+      "type": "object",
+      "properties": {
+        "descricao": {
+          "type": "string",
+          "example": "Descrição da tarefa"
+        },
+        "prioridade": {
+          "type": "string",
+          "enum": ["Alta", "Média", "Baixa"],
+          "example": "Alta"
+        },
+        "completada": {
+          "type": "boolean",
+          "example": false
+        }
+      },
+      "required": ["descricao", "prioridade", "idUsuario"]
+    }
+  }
+  
