@@ -21,6 +21,23 @@ const tarefaService = {
             console.error('Erro no tarefaService.obterTarefasPendentes:', error.message);
             throw new Error('Erro ao obter tarefas pendentes');
         }
+    },
+
+    async marcarTarefaComoConcluida(idUsuario, idTarefa) {
+        try {
+            const tarefa = await Tarefa.findOneAndUpdate(
+                { _id: idTarefa, idUsuario },
+                { completada: true },
+                { new: true }
+            );
+            if (!tarefa) {
+                return new ApiResponse(404, 'Tarefa não encontrada ou não pertence ao usuário', null);
+            }
+            return new ApiResponse(200, 'Tarefa marcada como concluída com sucesso', tarefa);
+        } catch (error) {
+            console.error('Erro no tarefaService.marcarTarefaComoConcluida:', error.message);
+            throw new Error('Erro ao marcar tarefa como concluída');
+        }
     }
 };
 

@@ -32,3 +32,16 @@ exports.obterTarefasPendentes = async (req, res) => {
         return res.status(500).json(new ApiResponse(500, 'Erro ao obter tarefas pendentes'));
     }
 };
+
+exports.marcarTarefaComoConcluida = async (req, res) => {
+    const { id } = req.params;
+    const idUsuario = req.idUsuario;
+
+    try {
+        const response = await tarefaService.marcarTarefaComoConcluida(idUsuario, id);
+        return res.status(response.status).json(response);
+    } catch (error) {
+        console.error('Erro no marcarTarefaComoConcluida controller:', error);
+        return res.status(500).json(new ApiResponse(500, 'Erro ao marcar tarefa como concluída'));
+    }
+};

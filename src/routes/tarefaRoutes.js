@@ -53,4 +53,29 @@ router.post('/tarefas', authMiddleware, tarefaController.cadastrarTarefa);
  */
 router.get('/tarefas', authMiddleware, tarefaController.obterTarefasPendentes);
 
+/**
+ * @swagger
+ * /api/v1/tarefas/{id}/concluir:
+ *   put:
+ *     summary: Marca uma tarefa como concluída
+ *     tags: [Tarefas]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID da tarefa a ser marcada como concluída
+ *     responses:
+ *       200:
+ *         description: Tarefa marcada como concluída com sucesso
+ *       404:
+ *         description: Tarefa não encontrada ou não pertence ao usuário
+ *       500:
+ *         description: Erro interno do servidor
+ */
+router.put('/tarefas/:id/concluir', authMiddleware, tarefaController.marcarTarefaComoConcluida);
+
 module.exports = router;

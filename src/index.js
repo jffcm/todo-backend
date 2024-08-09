@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const swaggerUI = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const usuarioRoutes = require('./routes/usuarioRoutes');
@@ -9,6 +10,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
+
+app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:4200'
+  }));
+
 app.use(express.json());
 app.use('/api/v1', usuarioRoutes);
 app.use('/api/v1', tarefaRoutes);
